@@ -8,9 +8,12 @@ export type PartnerDocument = HydratedDocument<Partner>;
 @Schema({collection: 'partners'})
 export class Partner {
     
-    @Prop({type: String})
-    trading_name: string;
+    @Prop({type: String, required: true})
+    tradingName: string;
     
+    @Prop({type: String, required: true})
+    ownerName: string;
+
     @Prop({type: String, unique: true})
     document: string;
 

@@ -21,6 +21,9 @@ export class DatabaseModule implements OnModuleInit {
     constructor(private readonly importService: ImportService) { }
 
     async onModuleInit() {
-        await this.importService.populateDatabaseFromFile('./src/partners.json');
+        const shouldPopulate = process.argv.includes('--populate');
+        if(shouldPopulate) {
+            await this.importService.populateDatabaseFromFile('./src/data/partners.json');
+        }
     }
 }

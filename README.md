@@ -1,99 +1,171 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Partner Locator API
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This project is a backend [challenge](https://github.com/ab-inbev-ze-company/ze-code-challenges/blob/master/backend.md) solution that provides a service to manage and locate delivery partners. The service uses MongoDB for geospatial queries, enabling quick location-based searches, and is built with NestJS.
 
-## Description
+## Prerequisites
+- [Node.js](https://nodejs.org)
+- [NestJS CLI](https://nestjs.com/)
+- [MongoDB](https://www.mongodb.com/)
+- [Docker and Docker Compose](https://www.docker.com/)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Features
 
-## Project setup
+- __Create new partners__: Add new partners with details like name, unique document, address and delivery coverage area.
+- __Find partner by id__: Retrieve a partner's information using a unique ID.
+- __Locate nearest partner__: Find the closest partner based on user-provived location within the coverage area.
 
-```bash
-$ npm install
-```
+## Getting Started
 
-## Compile and run the project
+### Installation
 
-```bash
-# development
-$ npm run start
+1. **Clone the repository:**
 
-# watch mode
-$ npm run start:dev
+    ```bash
+    git clone https://github.com/agmgomes/ze-code-location.git
+    cd ze-code-locations
+    ```
 
-# production mode
-$ npm run start:prod
-```
+2. **Install dependencies:**
 
-## Run tests
+    ```bash
+    npm install
+    ```
 
-```bash
-# unit tests
-$ npm run test
+### Environment Setup
 
-# e2e tests
-$ npm run test:e2e
+**Create a `.env` file** in the project root with the following environment variables:
 
-# test coverage
-$ npm run test:cov
-```
+    ```plaintext
+    MONGO_URI=mongodb://admin:password@localhost:27017/
+    MONGO_DB_NAME=zecode-locations-db
+    ```
 
-## Deployment
+### Database Setup
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+#### Option 1: Using Docker Compose
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+ **Start MongoDB using Docker Compose:**
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+  cd docker
+  docker-compose up -d
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+   This will start a MongoDB instance wich the API will connect to for data storage and retrieval.
 
-## Resources
+#### Option 2: Using Your Own MongoDB Setup
 
-Check out a few resources that may come in handy when working with NestJS:
+If you already have MongoDB installed locally or are using a managed MongoDB, ensure MongoDB is running, and update your `.env` file to point your MongoDB URI.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```plaintext
+  MONGODB_URI=mongodb://<your-mongodb-host>:<port>
+  DB_NAME=delivery_partners
+```
 
-## Support
+### Running the API locally
+Go to project directory and start the server:
+```bash
+  npm run start
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Or if you want populate initially the MongoDB collection with some data:
+```bash
+  npm run start:dev:populate
+```
 
-## Stay in touch
+## API Reference
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Get partner by ID
 
-## License
+```http
+  GET /partners/id/${id}
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `id` | `string` | **Required**. Id of partner to fetch |
+
+#### Responses
+- *** 200 OK**
+    - Return the partner's details including:
+        - `id`: unique identifier of the partner.
+        - `tradingName`: Name of the partner's bussiness.
+        - `ownerName`: Owner's name.
+        - `document`: Unique partner document identifier.
+        - `coverageArea`: Geographical area covered (MultiPolygon).
+        - `address`: Partner's location point (longitude and latitude).
+
+- *** 400 Not Found ***
+    - Partner with the specified ID does not exist.
+
+  
+### Get item
+
+```http
+  GET /partners/nearest?longitude=${longitude}&latitude=${latitude}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `longitude`      | `string` | **Required**. Longitude of the current location|
+| `latitude`| `number`| **Required**. Latitude of the current location|
+
+#### Responses
+- **200 OK**
+    - Returns the nearest partner that covers the specified location, including details like `id`, `tradingName`, `ownerName` and `address`.
+- **404 Not Found**
+  - Indicates no partner is found in the specified location or coverage area.
+
+### Create new partner
+
+```http
+  POST /partners/create
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `tradingName`| `string` | **Required**. Name under wich the partner trades |
+| `ownerName`| `string`| **Required**. Name of the owner of the partner|
+| `document` | `string`| **Required**. Unique document identifier for the partner|
+| `coverageArea`| `object`|**Required**. Area covered by the partner, in GeoJSON format (MultiPolygon)|
+| `address`| `object`| **Required**. Exact location of the partner, in GeoJSON format (Point)|
+
+##### **Example Request Body**
+  ```json
+  {
+    "tradingName": "Hoje Tem",
+    "ownerName": "Zé Artolas",
+    "document": "123456",
+    "coverageArea": {
+      "type": "MultiPolygon",
+      "coordinates": [
+				[
+                    [
+                        [-8.653230456534658, 40.95800322497854],
+                        [-8.653341500261632, 40.95799424007032],
+                        [-8.653325636871415, 40.957788784827954],
+                        [-8.653276460364111, 40.95778938382392],
+                        [-8.653218558992904, 40.957809150682266],
+                        [-8.653230456534658, 40.95800322497854]
+                    ]
+                ]
+			] 
+    },
+    "address": {
+      "type": "Point",
+      "coordinates": [
+          -8.653214593145321,
+          40.95799124510043
+        ]
+    }
+  }
+```
+#### Responses
+- **201 Created**
+    - Returns the created partner object.
+
+- **400 Bad Request**
+    - Returned if validation failed (e.g., missing required fields or duplicated document).
+
+## LICENSE
+This project is licensed under the MIT License.

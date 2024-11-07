@@ -36,10 +36,10 @@ This project is a backend [challenge](https://github.com/ab-inbev-ze-company/ze-
 
 **Create a `.env` file** in the project root with the following environment variables:
 
-    ```plaintext
-    MONGO_URI=mongodb://admin:password@localhost:27017/
-    MONGO_DB_NAME=zecode-locations-db
-    ```
+```plaintext
+  MONGO_URI=mongodb://admin:password@localhost:27017/
+  MONGO_DB_NAME=zecode-locations-db
+```
 
 ### Database Setup
 

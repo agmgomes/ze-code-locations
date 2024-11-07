@@ -87,7 +87,7 @@ Or if you want populate initially the MongoDB collection with some data:
 | `id` | `string` | **Required**. Id of partner to fetch |
 
 #### Responses
-- *** 200 OK**
+- **200 OK**
     - Return the partner's details including:
         - `id`: unique identifier of the partner.
         - `tradingName`: Name of the partner's bussiness.
@@ -96,11 +96,11 @@ Or if you want populate initially the MongoDB collection with some data:
         - `coverageArea`: Geographical area covered (MultiPolygon).
         - `address`: Partner's location point (longitude and latitude).
 
-- *** 400 Not Found ***
+- **400 Not Found**
     - Partner with the specified ID does not exist.
 
   
-### Get item
+### Get nearest partner by location
 
 ```http
   GET /partners/nearest?longitude=${longitude}&latitude=${latitude}
